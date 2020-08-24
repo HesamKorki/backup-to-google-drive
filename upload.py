@@ -4,7 +4,7 @@ from googleapiclient.http import MediaFileUpload, HttpRequest
 from googleapiclient.discovery import build
 from datetime import datetime
 from glob import glob
-import os
+import os, shutil
 
 import clean
 import compress
@@ -24,11 +24,11 @@ try:
 
         now = datetime.now().strftime('%Y-%m-%d--%H:%M:%S')
         db_name = f'DB-{now}.zip'
-        file_metadata = {'name' : db_name, 'parents': ['1CFOqw4-g5wo02nnFXK2hVmH4RuJhT4kV']}
+        file_metadata = {'name' : db_name, 'parents': ['1CFOqw4-g5wo02nnFXK2hVmH4RuJhT4kV']} ## parents value should be the Folder ID of a sharable folder with your service account email
         media = MediaFileUpload(file_name, mimetype='application/zip')
         file_up = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-        os.system(f'mv {file_name} ./uploaded/{db_name}')
-
+        shutil.move(file_name, f"./uploaded/{db_name}" )
+        
     print("Uploaded!")
 except FileNotFoundError:
     print("There's no file to upload")
