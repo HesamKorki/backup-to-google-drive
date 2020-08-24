@@ -1,0 +1,10 @@
+env
+__pycache__
+service-credentials.json
+
+uploaded/*
+!uploaded/README.md
+
+database/*
+!database/README.md
+!database/raw/.delete
