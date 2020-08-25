@@ -42,3 +42,13 @@ This process can be concluded into 3 steps and it's OS independent:
 - Finally, the script would clean the *uploaded* directy, meaning, it would check if any files are uploaded more than 2 weeks ago. If so, it will delete those files to prevent the local storage from getting full
 
 The best case of usage for this script is to run it on an automated schedule like a cronjob on your server. Also, you need another cronjob just before this to get a database backup from your database into the *database/raw* directory.
+
+## Configuration
+
+You may configure this script by modifying the following in the *config.py*:
+
+- FOLDER_ID: You must set this value which is the folder id of the sharable folder that you created with your google drive account and **shared it with the service account email address**. You may extract the folder id from the URL of the folder.
+
+- CLEAN_TIME: It is the number of days before the uploaded directory files gets deleted and by default it is set to 14
+
+
